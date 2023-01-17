@@ -1,5 +1,6 @@
 # Font_checker
-ist dafür da zu überprüfen ob die Fonts auf der Westen stimmen
+ist dafür da zu überprüfen ob die Fonts auf der Westen.de alle stimmen
+
 Um das Programm zu starten, muss man sich von dieser Seite den passenden Chrome Driver downloaden
 https://chromedriver.chromium.org/downloads
 Seine Chrome Version findet man bei:
