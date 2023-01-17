@@ -24,7 +24,7 @@ url = 'https://stage.derwesten.de/panorama/vermischtes/hochzeit-news-reddit-freu
 
 
 ## öfnet einmal font_error_log.csv um es zu erzeugen
-with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
     file_object.close()
 try:    
     driver.get(url);
@@ -35,7 +35,7 @@ except:
     driver_error = 'der Driver konnte nicht gefunden werden'
     error_time = datetime.now()
     url = "Error"
-    with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+    with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
         
         writer = csv.writer(file_object, delimiter = ";")
         writer.writerow([driver_error, error_time, url])
@@ -66,7 +66,7 @@ except:
     error_time = datetime.now()
     url = driver.current_url
     # Schreibe die Fehlermeldung, die Fehlerzeit und die URL in eine CSV-Datei
-    with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+    with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
         
         writer = csv.writer(file_object, delimiter = ";")
         writer.writerow([cookie_error, error_time, url])
@@ -83,7 +83,7 @@ try:
         ueberschrift_font = headline.value_of_css_property('font-family')
         ueberschrift_font_size = headline.value_of_css_property('font-size')
         # Öffne eine CSV-Datei und schreibe die Informationen in eine neue Zeile
-        with open("font_checker.csv", "a", encoding='utf-8') as file_object:
+        with open("font_checker.csv", "a", newline='', encoding='utf-8') as file_object:
 
             writer = csv.writer(file_object, delimiter = ";")
             writer.writerow([type, ueberschrift_font, ueberschrift_font_size])
@@ -95,7 +95,7 @@ try:
 
                 error_time = datetime.now()
                 url = driver.current_url
-                with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+                with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
                     writer = csv.writer(file_object, delimiter = ";")
                     writer.writerow([ueberschrft_error, error_time, url])
                     file_object.close()
@@ -106,7 +106,7 @@ try:
         ueberschrift_error = 'ueberschrift ist ungewöhnlich kurz'
         error_time = datetime.now()
         url = driver.current_url
-        with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+        with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
 
             writer = csv.writer(file_object, delimiter = ";")
             writer.writerow([ueberschrift_error, error_time, url])
@@ -117,7 +117,7 @@ except:
     ueberschrift_error = 'ueberschrift nicht gefunden'
     error_time = datetime.now()
     url = driver.current_url
-    with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+    with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
         writer = csv.writer(file_object, delimiter = ";")
         writer.writerow([ueberschrift_error, error_time, url])
         file_object.close()  
@@ -129,7 +129,7 @@ if driver.find_element(By.CSS_SELECTOR, '.entry-subhead').is_displayed():
     autor_in_font = driver.find_element(By.CSS_SELECTOR, '.url.fn.n').value_of_css_property('font-family')
     autor_in_font_size = driver.find_element(By.CSS_SELECTOR, '.url.fn.n').value_of_css_property('font-size')
     
-    with open("font_checker.csv", "a", encoding='utf-8') as file_object:
+    with open("font_checker.csv", "a", newline='', encoding='utf-8') as file_object:
         
         writer = csv.writer(file_object, delimiter = ";")
         writer.writerow([type, autor_in_font, autor_in_font_size])
@@ -138,7 +138,7 @@ if driver.find_element(By.CSS_SELECTOR, '.entry-subhead').is_displayed():
             autor_in_error = 'die autor_innen font ist falsch'
             error_time = datetime.now()
             url = driver.current_url
-            with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+            with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
             
                 writer = csv.writer(file_object, delimiter = ";")
                 writer.writerow([autor_in_error, error_time, url])
@@ -149,7 +149,7 @@ else:
     autor_in_error = 'es wird kein_e autor_in angezeigt'
     error_time = datetime.now()
     url = driver.current_url
-    with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+    with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
         
         writer = csv.writer(file_object, delimiter = ";")
         writer.writerow([autor_in_error, error_time, url])
@@ -165,7 +165,7 @@ try:
         lead_font = lead.value_of_css_property('font-family')
         lead_font_size = lead.value_of_css_property('font-size')
          # Die Informationen werden in eine CSV-Datei geschrieben
-        with open("font_checker.csv", "a", encoding='utf-8') as file_object:
+        with open("font_checker.csv", "a", newline='', encoding='utf-8') as file_object:
 
             writer = csv.writer(file_object, delimiter = ";")
             writer.writerow([type, lead_font, lead_font_size])
@@ -176,7 +176,7 @@ try:
             lead_error = 'die lead font ist falsch'
             error_time = datetime.now()
             url = driver.current_url
-            with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+            with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
                 writer = csv.writer(file_object, delimiter = ";")
                 writer.writerow([lead_error, error_time, url])
                 file_object.close()
@@ -185,7 +185,7 @@ try:
         lead_error = ' lead ist ungewöhnlich kurz'
         error_time = datetime.now()
         url = driver.current_url
-        with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+        with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
 
             writer = csv.writer(file_object, delimiter = ";")
             writer.writerow([lead_error, error_time, url])
@@ -196,7 +196,7 @@ except:
     lead_error = ' text lead wurde nicht gefunden'
     error_time = datetime.now()
     url = driver.current_url
-    with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+    with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
         writer = csv.writer(file_object, delimiter = ";")
         writer.writerow([lead_error, error_time, url])
         file_object.close()    
@@ -216,7 +216,7 @@ try:
 
         # Die Informationen werden in eine CSV-Datei geschrieben
 
-        with open("font_checker.csv", "a", encoding='utf-8') as file_object:
+        with open("font_checker.csv", "a", newline='', encoding='utf-8') as file_object:
 
             writer = csv.writer(file_object, delimiter = ";")
             writer.writerow([type, body_font, body_font_size])
@@ -227,7 +227,7 @@ try:
             body_error = 'die body font ist falsch'
             error_time = datetime.now()
             url = driver.current_url
-            with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+            with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
                 writer = csv.writer(file_object, delimiter = ";")
                 writer.writerow([body_error, error_time, url])
                 file_object.close()
@@ -237,7 +237,7 @@ try:
         body_error = ' es wird keine body angezeigt'
         error_time = datetime.now()
         url = driver.current_url
-        with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+        with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
 
             writer = csv.writer(file_object, delimiter = ";")
             writer.writerow([body_error, error_time, url])
@@ -248,7 +248,7 @@ except:
     body_error = ' es wird keine body angezeigt'
     error_time = datetime.now()
     url = driver.current_url
-    with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+    with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
         writer = csv.writer(file_object, delimiter = ";")
         writer.writerow([body_error, error_time, url])
         file_object.close()
@@ -265,7 +265,7 @@ try:
     zw_font = zw.value_of_css_property('font-family')
     zw_font_size = zw.value_of_css_property('font-size')
     # Die Informationen werden in eine CSV-Datei geschrieben
-    with open("font_checker.csv", "a", encoding='utf-8') as file_object:
+    with open("font_checker.csv", "a", newline='', encoding='utf-8') as file_object:
         
         writer = csv.writer(file_object, delimiter = ";")
         writer.writerow([type, zw_font, zw_font_size])
@@ -275,7 +275,7 @@ try:
         error_time = datetime.now()
         url = driver.current_url
         # Schreibt ein Fehlermeldung
-        with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+        with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
             writer = csv.writer(file_object, delimiter = ";")
             writer.writerow([zw_error, error_time, url])
             file_object.close()
@@ -284,7 +284,7 @@ except:
     zw_error = ' es wird keine zwischenüberschfit angezeigt'
     error_time = datetime.now()
     url = driver.current_url
-    with open("font_error_log.csv", "a", encoding='utf-8') as file_object:
+    with open("font_error_log.csv", "a", newline='', encoding='utf-8') as file_object:
         
         writer = csv.writer(file_object, delimiter = ";")
         writer.writerow([zw_error, error_time, url])
