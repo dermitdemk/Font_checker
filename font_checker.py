@@ -15,6 +15,8 @@ import pandas as pd
 import csv
 from datetime import datetime
 
+
+
 ## hier kann man den Pfad zu seimen driver definiren 
 driver = webdriver.Chrome('C:\Windows\chromedriver.exe') 
 
@@ -46,15 +48,20 @@ except:
 # Warte 30 Sekunden, bis der Shadow-root druch das element cmpwrapper da ist
 try:
     element = WebDriverWait(driver, 30).until(
-    EC.presence_of_element_located((By.CLASS_NAME, "cmpwrapper"))
+    EC.presence_of_element_located((By.CLASS_NAME, "cmpbox"))
     )
+    wrapper = driver.find_element(By.CLASS_NAME,'cmpbox')
+    wrapper.find_element(By.LINK_TEXT, "Alle akzeptieren").click()
     
+    ## der alte code für den falle eines Shadow-roots 
     # Geht in den shadow-root
-    shadow = driver.find_element(By.CLASS_NAME,"cmpwrapper")
-    script = 'return arguments[0].shadowRoot'
-    shadow_root = driver.execute_script(script, shadow)
+    #shadow = driver.find_element(By.CLASS_NAME,"cmpwrapper")
+    #script = 'return arguments[0].shadowRoot'
+    #shadow_root = driver.execute_script(script, shadow)
     # Klick auf den Link "Alle akzeptieren"
-    shadow_root.find_element(By.LINK_TEXT, "Alle akzeptieren").click()
+    #shadow_root.find_element(By.LINK_TEXT, "Alle akzeptieren").click()
+    
+    
 
     t_akzeptiern_der_cookie = int(time.time())*1000
     
@@ -159,8 +166,9 @@ try:
     
     # Der Code sucht nach dem div mit der Klasse "lead"
     lead = driver.find_element(By.CSS_SELECTOR, '.lead')
+
     # Wenn der Inhalt des divs länger als 10 Zeichen ist, wird die Schriftart und Schriftgröße überprüft
-    if len(lead.text) > 10:
+    if len(lead.get_attribute('innerHTML')) > 10:
         type = 'text_lead'
         lead_font = lead.value_of_css_property('font-family')
         lead_font_size = lead.value_of_css_property('font-size')
@@ -207,7 +215,7 @@ try:
     body = driver.find_element(By.CSS_SELECTOR, '.article-body')
 
     # Überprüfen, ob die Textlänge des Elements größer als 10 ist
-    if len(body.text)>10:
+    if len(body.get_attribute('innerHTML'))>10:
 
 
         type = 'Body' 
@@ -291,3 +299,5 @@ except:
         file_object.close()
 # Schließen des Browserfensters
 driver.quit()
+
+
